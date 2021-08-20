@@ -8,13 +8,10 @@ ENV MULE_MD5=0859dad4a6dd992361d34837658e517d
 ENV TINI_SUBREAPER=
 ENV TZ="Asia/Kolkata"
 # SSL Cert for downloading mule zip
-RUN apt  --no-cache update && \
-    apt  --no-cache upgrade && \
-    apt  --no-cache add ca-certificates && \
-    update-ca-certificates && \
-    apt  --no-cache add openssl && \
-    apt  add --update tzdata && \
-    rm -rf /var/cache/apk/*
+RUN DEBIAN_FRONTEND=noninteractive \
+    apt-get -y update && apt-get full-upgrade -y \
+    && apt-get install -y --no-install-recommends tzdata ca-certificates openssl \
+    && rm -rf /var/cache/apk/*
 
 RUN adduser -D -g "" mule mule
 
