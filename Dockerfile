@@ -16,7 +16,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
     && dpkg-reconfigure -f noninteractive tzdata \
     && rm -rf /var/cache/apk/*
 
-RUN seradd -u 1000 -U mule
+RUN useradd -u 1000 -U mule -d /opt/mule
 
 RUN mkdir /opt/mule-standalone-${MULE_VERSION} && \
     ln -s /opt/mule-standalone-${MULE_VERSION} ${MULE_HOME} && \
