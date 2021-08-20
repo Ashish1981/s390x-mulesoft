@@ -8,6 +8,7 @@ ENV MULE_MD5=0859dad4a6dd992361d34837658e517d
 ENV TINI_SUBREAPER=
 ENV TZ="Asia/Kolkata"
 # SSL Cert for downloading mule zip
+RUN ln -fs /usr/share/zoneinfo/Asia/Kolkata /etc/localtime && dpkg-reconfigure -f noninteractive tzdata
 RUN DEBIAN_FRONTEND=noninteractive \
     apt-get -y update && apt-get full-upgrade -y \
     && apt-get install -y --no-install-recommends tzdata ca-certificates openssl \
